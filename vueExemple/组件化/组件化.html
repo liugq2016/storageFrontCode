@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <!-- 模板代码 -->
+        <button @click="count++">我被点击了 {{count}}次 </button><br/>
+        <!-- 使用全局组件 -->
+        <counter @click = "count++"></counter><br/>
+        <!-- 使用局部组件 -->
+        <button-counter @click = "count++"></button-counter><br/>
+    </div>
+    <script src="../node_modules/vue/dist/vue.js"></script>
+    <script>
+        // 全局声明注册一个组件
+        Vue.component("counter",{
+            template: `<button @click="count++">我被点击了 {{count}}次 </button>`,
+            data(){
+                return{
+                    count: ""
+                }
+            },
+        });
+
+
+
+
+        // 局部声明一个组件
+        const buttonCounter = {
+            template: `<button @click="count++">我被点击了 {{count}}次 </button>`,
+            data() {
+                return {
+                    count: ""
+                }
+            },
+        }
+        new Vue({
+           el: "#app",
+           data: {
+               count: ""
+           } ,
+        //    使用局部组件,需先在components中声明
+           components: {
+            'button-counter': buttonCounter ,
+           }
+        });
+    </script>
+</body>
+</html>

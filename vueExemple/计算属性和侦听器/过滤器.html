@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 过滤器常用来处理文本格式化的操作。过滤器可以用在两个地方：双花括号插值和v-bind表达式 -->
+    <div id="app">
+        <ul>
+            <li v-for="user in userList" :key=`{{user.id}}`>
+                <!-- 业务逻辑
+                    gender下的值：
+                        1：男
+                        0： 女
+                    这种简单逻辑还能用三元表达式实现，复杂逻辑需借助过滤器来实现
+                -->
+                <!-- 用三元运算符实现 -->
+                {{user.id}},{{user.name}},{{user.gender == 1?"男":"女"}}<br/>
+                <!-- 用过滤器实现 -->
+                {{user.id}},{{user.name}},{{user.gender | genderFilter}}，{{user.gender | gFilter}}
+            </li>
+        </ul>
+    </div>
+    <script src="../node_modules/vue/dist/vue.js"></script>
+    <script>
+        // 定义全局过滤器
+        Vue.filter("gFilter", function(val){
+            if(val == 1 )
+                        return "全局：男";
+                    else
+                        return "全局：女";
+        });
+
+
+
+        new Vue({
+            el: "#app",
+            data: {
+                userList: [
+                    {id: 1,name: "lgq",gender: 1},
+                    {id: 2,name: "ljl", gender: 0}
+                ]
+            },
+            methods: {
+                
+            },
+            filters: {
+                // 局部过滤器，只能在当前vue实例中使用
+                genderFilter(val){
+                    if(val == 1 )
+                        return "男";
+                    else
+                        return "女";
+                }
+            }
+        });
+    </script>
+</body>
+</html>
