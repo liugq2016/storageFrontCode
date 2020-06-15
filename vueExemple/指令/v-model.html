@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+    <!-- v-model主要用于表单项和自定义组件，视图和模型任一一个改变都会导致另一个随之改变，而v-bind只有模型改变时视图才会改变，视图改变不会导致模型改变 -->
+        <!-- 表单项 -->
+        精通的语言:<br/>
+            <input type="checkbox" v-model="language" value="java"/>java<br/>
+            <input type="checkbox" v-model="language" value="php"/>php<br/>
+            <input type="checkbox" v-model="language" value="python"/>python<br/>
+        选中了:<br/>
+                {{language.join(",")}}
+    </div>
+    <script src="../node_modules/vue/dist/vue.js"></script>
+    <script>
+        new Vue({
+            el: app,
+            data: {
+                language: []
+            },
+            methods: {
+                
+            },
+        });
+    </script>
+</body>
+</html>

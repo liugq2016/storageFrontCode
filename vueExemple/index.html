@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+         <!-- {{name}}表示从数值区取出key为name的值 -->
+         <!-- vue声明式渲染功能 -->
+         <input type="text" v-model="num">
+         <button v-on:click="num++">加分</button>
+         <!-- 实现指令的复杂操作 -->
+         <button v-on:click="cancle">取消加分</button>
+        <h1>{{name}},非常帅,{{num}}分</h1>
+    </div>
+    <script src="./node_modules/vue/dist/vue.js"></script>
+    <script>
+        // vue类库的使用方式
+        // 1. 创建vue实例，关联页面的视图，将自己的数据(data)渲染到关联的视图，响应式的
+        // 2. 可以通过指令(v-XXX)来简化对dom的操作,可以实现复杂的操作,
+        // 复杂操作可以放在vue对象的methods对象中
+
+
+
+
+
+
+        // vue声明式渲染功能 
+        let vm = new Vue({
+            // 表明操作那个节点
+            el: "#app",//绑定元素
+            data: {
+                // 封装数据
+                name: "lgq",
+                num: 1
+            },
+            methods:{
+                // 封装方法
+                cancle: function(){
+                    this.num--;
+                }
+            }
+        });
+        //  双向绑定,模型和视图某一个发生变化，另一个也会随之变化,通过v-model指令实现,如代码的<input>所示
+        //  事件处理,通过v-on绑定事件类型'='
+        
+    </script>
+</body>
+</html>

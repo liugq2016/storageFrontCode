@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+        <script>
+            const person = {
+                name: "jack",
+                age: 21,
+                language: ['java','js','css']
+            }
+            // 获取对象所有的键
+            console.log(Object.keys(person));
+            // 获取对象所有的值
+            console.log(Object.values(person));
+            // 获取对象中的键值对
+            console.log(Object.entries(person));
+
+
+            const target = {a:1};
+            const source1 = {b:2};
+            const source2 = {c:3};
+
+            // 将对象source1和source2中的内容复制到target对象中
+            Object.assign(target,source1,source2);
+            console.log(target);
+
+
+            // 声明对象简写
+            const age = 23;
+            const name = "张三";
+            // 原始方式
+            const person1 = {age: age,name: name};
+            // 简写方式
+            const person2 = {age,name};
+            console.log(person1);
+            console.log(person2);
+
+
+
+
+            // 对象的函数属性简写
+            let person3 = {
+                name: "jack",
+                // 原始函数写法
+                eat: function(food){
+                    console.log(this.name + "在吃" + food);
+                },
+                // 箭头函数不能使用this,要使用对象名.属性来获取
+                eat1: food => console.log(person3.name+ "在吃" + food),
+                // 另一种简写方式
+                eat2(food){
+                    console.log(this.name + "在吃" + food);
+                }
+            }
+            person3.eat("jb");
+            person3.eat1("jb");
+            person3.eat2("jb");
+
+
+
+
+
+            // 对象扩展运算符
+            // 1.拷贝对象(深拷贝)
+            let person4 = {name: "Amy",age: 15};
+            let someone = {...person4};
+            console.log(someone);
+            // 2.合并对象
+            let age1 = {age: 16};
+            let name1 = {name: "lgq"};
+            let person5 = {...age1,...name1};
+            console.log(person5);
+        </script>
+    
+</body>
+</html>

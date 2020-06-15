@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <!-- 某些结果是基于之前数据实时计算出来的，我们可以利用计算属性(computed)来完成 -->
+        <!-- 侦听器(watch)是侦听一个数值的变化情况 -->
+        <!-- 业务需求：
+        
+                总价用计算属性实时更新
+                西游记的库存为3个，当侦听到用户需求量大于3时及时给出提示信息，并将需求量改为3，即最大值
+        -->
+        <ul>
+            <li>西游记： 价格：{{xyjPrice}} ，数量:<input type="number" v-model="xCount"/></li>
+            <li>水浒传: 价格：{{shzPrice}} ，数量:<input type="number" v-model="sCount"/></li>
+            <li>总价: {{totalPrice}} </li>
+            <span>{{massage}}</span>
+        </ul>
+        
+    </div>
+    <script src="../node_modules/vue/dist/vue.js"></script>
+
+    <script>
+        new Vue({
+           el: "#app",
+           data: {
+               massage: "",
+                xyjPrice: 1,
+                shzPrice: 2,
+                xCount: "",
+                sCount: "",
+                
+           } ,
+           computed: {
+            //    计算属性,当这里面的方法数值发生变化时，会自动调用这个方法改变值
+            totalPrice(){
+                return this.xyjPrice*this.xCount + this.shzPrice*this.sCount;
+            }
+           },
+           watch: {
+            //    侦听器
+            // 这个地方逻辑存在问题
+            xCount: function(newValue,oldValue){
+                if(newValue>3){
+                    this.massage = "超出库存限制";
+                    this.xCount = 3;
+                }else{
+                    this.massage = "";
+                }
+            }
+           }
+        });
+    </script>
+</body>
+</html>

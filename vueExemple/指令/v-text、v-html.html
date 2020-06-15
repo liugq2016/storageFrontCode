@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="id=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <!-- 不会对<h1>进行转义，且会出现插值闪烁的现象，插值表达式只能写在标签体里面 -->
+        {{msg}}
+        <br/>
+        <!-- v-html示例  对<h1>进行转义,且不会出现差值闪烁的现象 -->
+        <span v-html="msg"></span>
+        <br/>
+        <!-- v-text示例  不会对<h1>进行转义,且不会出现差值闪烁的现象 -->
+        <span v-text="msg"></span>
+    </div>
+    <script src="../node_modules/vue/dist/vue.js"></script>
+    <script>
+        new Vue({
+            el: "#app",
+            data: {
+                msg: "<h1>Hello</h1>"
+            }
+        })
+    </script>
+</body>
+</html>

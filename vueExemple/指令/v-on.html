@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <div id="app">
+        <!-- 事件中直接写js片段 -->
+        <button v-on:click="++num">点赞</button>
+        <!-- 事件指定一个回调函数，必须是vue实例中定义的函数 -->
+        <!-- v-on可以简写为@ -->
+        <button @click = "cancle">取消</button>
+        <!--  -->
+        <h1>有{{num}}个赞</h1>
+
+
+
+        <!-- 事件修饰符 -->
+        <!-- 目的为了阻止事件冒泡：即点击小div时不会促发大div的点击事件 -->
+        <div style="border: 1px solid red;padding: 20px;" v-on:click="hello">
+        大div
+        <!--  @click.stop即可实现阻止事件冒泡-->
+            <div style="border: 1px solid red;padding: 20px;" @click.stop="hello">
+            小div<br/>
+            <!-- @click.prevent阻止了事件的默认行为，即点击a标签不会发生跳转行为 -->
+            <a href="https://www.bilibili.com/" @click.prevent="hello">b站</a>
+            </div>
+        </div>
+
+
+
+    <!-- 按键修饰符: -->
+    <!-- 按下键盘的上键时num加2,下键则反之 按下ctrl+click则加10-->
+    <input type="text" v-model="num" v-on:keyup.up="num+=2" @keyup.down="num-=2" @click.ctrl = "num+=10"/><br/>
+
+
+    </div>
+
+
+
+
+    <script src="../node_modules/vue/dist/vue.js"></script>
+
+    <script>
+        new Vue({
+           el: "#app",
+           data: {
+            num: 1
+           },
+           methods: {
+               cancle(){
+                   --this.num;
+               },
+               hello(){
+                   alert("被点击了")
+               }
+           },
+        });
+    </script>
+
+</body>
+</html>

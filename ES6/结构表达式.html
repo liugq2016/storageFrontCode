@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+     <script>
+        //  let arr = [1,2,3];
+        // 原始写法
+        //  let a = arr[0];
+        //  let b = arr[1];
+        //  let c = arr[2];
+        // 使用数组解构简化书写
+        // let [a,b,c] = arr;
+        //  console.log(a,b,c);
+
+
+
+        const person = {
+            name: "jack",
+            age: 21,
+            language: ["java","js","css"]
+        }
+        // 原始写法
+        // const name = person.name;
+        // const age = person.age;
+        // const language = person.language;
+        // 对象解构简化书写
+        const {name,age,language} = person;
+        console.log(name,age,language);
+     </script>
+</body>
+</html>

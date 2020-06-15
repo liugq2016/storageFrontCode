@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 这两个指令是对v-if的补充 -->
+    <div id="app">
+        <button @click="random = Math.random()">点击产生随机数</button>
+        <span>{{random}}</span>
+        <h1 v-if="random>=0.75">
+            &gt;=0.75
+        </h1>
+
+        <h1 v-else-if="random>=0.5">
+            &gt;=0.5
+        </h1>
+        <h1 v-else-if="random >= 0.2">
+            &gt;=0.2
+        </h1>
+        <h1 v-else>
+            &lt;0.2
+        </h1>
+    </div>
+    <script src="../node_modules/vue/dist/vue.js"></script>
+    <script>
+        new Vue({
+           el: "#app",
+           data: {
+               random: 1
+           } 
+        });
+    </script>
+</body>
+</html>
